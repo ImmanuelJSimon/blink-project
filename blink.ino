@@ -1,19 +1,20 @@
-int blinkDelay = 500;
-int minDelay = 100;
-int decrement = 50;
+const int ledPin = 13;
+const int buttonPin = 2;
 
 void setup() {
-  pinMode(13, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP); // use internal pull-up resistor
 }
 
 void loop() {
-  digitalWrite(13, HIGH);
-  delay(blinkDelay);
-  digitalWrite(13, LOW);
-  delay(blinkDelay);
+  int buttonState = digitalRead(buttonPin);
 
-  blinkDelay -= decrement;
-  if (blinkDelay < minDelay) {
-    blinkDelay = 500; // reset to original
+  if (buttonState == LOW) { // button is pressed
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  } else {
+    digitalWrite(ledPin, LOW); // turn off LED when not blinking
   }
 }
