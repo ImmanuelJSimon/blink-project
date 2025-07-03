@@ -1,11 +1,20 @@
+const int ledPin = 13;
+const int buttonPin = 2;
+
 void setup() {
-  // Initialize digital pin 13 as an output.
-  pinMode(13, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP); // use internal pull-up resistor
 }
 
 void loop() {
-  digitalWrite(13, HIGH);   // Turn the LED on
-  delay(1000);              // Wait for 1 second
-  digitalWrite(13, LOW);    // Turn the LED off
-  delay(1000);              // Wait for 1 second
+  int buttonState = digitalRead(buttonPin);
+
+  if (buttonState == LOW) { // button is pressed
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  } else {
+    digitalWrite(ledPin, LOW); // turn off LED when not blinking
+  }
 }
