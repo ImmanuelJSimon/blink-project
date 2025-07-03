@@ -1,4 +1,6 @@
-int blinkDelay = 500; // Blink delay in milliseconds
+int blinkDelay = 500;
+int minDelay = 100;
+int decrement = 50;
 
 void setup() {
   pinMode(13, OUTPUT);
@@ -9,4 +11,9 @@ void loop() {
   delay(blinkDelay);
   digitalWrite(13, LOW);
   delay(blinkDelay);
+
+  blinkDelay -= decrement;
+  if (blinkDelay < minDelay) {
+    blinkDelay = 500; // reset to original
+  }
 }
